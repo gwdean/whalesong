@@ -45,6 +45,13 @@
                     triangle
                     right-triangle
                     isosceles-triangle
+                    triangle/sss
+                    triangle/ass
+                    triangle/sas
+                    triangle/ssa
+                    triangle/aas
+                    triangle/asa
+                    triangle/saa
                     star
                     radial-star
                     star-polygon
@@ -61,8 +68,6 @@
                     angle?
                     side-count?
                     step-count?
-
-                    image?
                     
                     ))
 

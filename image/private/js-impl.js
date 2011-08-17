@@ -79,12 +79,6 @@ var checkReal = plt.baselib.check.checkReal;
 var checkBoolean = plt.baselib.check.checkBoolean;
 
 var checkNatural = plt.baselib.check.checkNatural;
-
-var checkPositiveInteger = plt.baselib.check.makeCheckArgumentType(
-    function(x) { return plt.baselib.numbers.isInteger(x) &&
-		  plt.baselib.numbers.greaterThan(x, 0);},
-    "positive integer");
-
 var checkNonNegativeReal = plt.baselib.check.checkNonNegativeReal;
 
 
@@ -226,15 +220,6 @@ EXPORTS['step-count?'] =
         });
 
 
-EXPORTS['image?'] = 
-    makePrimitiveProcedure(
-        'image?',
-            1,
-        function(MACHINE) {
-            return isImage(MACHINE.env[MACHINE.env.length - 1]);
-        });
-
-
 
 EXPORTS['text'] =
     makePrimitiveProcedure(
@@ -242,8 +227,7 @@ EXPORTS['text'] =
         3,
         function(MACHINE) {
 	    var aString = checkString(MACHINE,'text', 0);
-	    // Unlike 2htdp, we'll allow this to be a positive integer
-	    var aSize = checkPositiveInteger(MACHINE, 'text', 1); 
+	    var aSize = checkByte(MACHINE, 'text', 1); 
 	    var aColor = checkColor(MACHINE, 'text', 2);
 	    return makeTextImage(aString.toString(), 
                                  jsnums.toFixnum(aSize),
@@ -913,6 +897,129 @@ EXPORTS['isosceles-triangle'] =
                                      s.toString(),
                                      c);
         });
+
+EXPORTS['triangle-sss'] =
+    makePrimitiveProcedure(
+        'triangle-sss',
+        5,
+        function(MACHINE) {
+	    var sideA = checkNonNegativeReal(MACHINE, "triangle-sss", 0);
+	    var sideB = checkNonNegativeReal(MACHINE, "triangle-sss", 1);
+	    var sideC = checkNonNegativeReal(MACHINE, "triangle-sss", 2);
+	    var s = checkMode(MACHINE, "triangle-sss", 3);
+	    var c = checkColor(MACHINE, "triangle-sss", 4);
+	    return makeTriangleImage(jsnums.toFixnum(sideA),
+				     jsnums.toFixnum(sideB),
+				     jsnmus.toFixnum(sideC),
+				     s.toString(),
+				     c);
+			});
+
+EXPORTS['triangle-ass'] =
+   makePrimitiveProcedure(
+       'triangle-ass',
+       5,
+       function(MACHINE) {
+           var angleA = checkAngle(MACHINE, "triangle-ass", 0);
+	         var sideB = checkNonNegativeReal(MACHINE, "triangle-ass", 1);
+	         var sideC = checkNonNegativeReal(MACHINE, "triangle-ass", 2);
+	         var s = checkMode(MACHINE, "triangle-ass", 3);
+	         var c = checkColor(MACHINE, "triangle-ass", 4);
+           return makeTriangleImage(jsnums.toFixnum(angleA),
+                                    jsnums.toFixnum(sideB),
+                                    jsnums.toFixnum(sideC),
+                                    s.toString();
+                                    c);
+   });
+
+EXPORTS['triangle-sas'] =
+    makePrimitiveProcedure(
+        'triangle-sas',
+        5,
+        function(MACHINE) {
+            var sideA = checkNonNegativeReal(MACHINE, "triangle-sas", 0);
+	        var angleB = checkAngle(MACHINE, "triangle-sas", 1);
+            var sideC = checkNonNegativeReal(MACHINE, "triangle-sas", 2);
+            var s = checkMode(MACHINE, "triangle-sas", 3);
+            var c = checkColor(MACHINE, "triangle-sas", 4);
+            return makeTriangleImage(jsnums.toFixnum(sideA),
+                                     jsnums.toFixnum(angleB),
+				                             jsnums.toFixnum(sideC),
+				                             s.toString(),
+				                             c);
+	  });
+
+EXPORTS['triangle-ssa'] =
+    makePrimitiveProcedure(
+        'triangle-ssa',
+	      5,
+	      function(MACHINE) {
+            var sideA = checkNonNegativeReal(MACHINE, "triangle-ssa", 0);
+	          var sideB = checkNonNegativeReal(MACHINE, "triangle-ssa", 1);
+            var angleC = checkAngle(MACHINE, "triangle-ssa", 2);
+            var s = checkMode(MACHINE, "triangle-ssa", 3);
+	          var c = checkColor(MACHINE, "triangle-ssa", 4);
+	          return makeTriangleImage(jsnums.toFixnum(sideA),
+	                                   jsnums.toFixnum(sideB),
+				                             jsnums.toFixnum(angleC),
+				                             s.toString(),
+				                             c);
+    });
+
+EXPORTS['triangle-aas'] =
+    makePrimitiveProcedure(
+        'triangle-aas',
+	      5,
+	      function(MACHINE) {
+            var angleA = checkAngle(MACHINE, "triangle-aas", 0);
+	          var angleB = checkAngle(MACHINE, "triangle-aas", 1);
+            var sideC = checkNonNegativeReal(MACHINE, "triangle-aas", 2);
+            var s = checkMode(MACHINE, "triangle-aas", 3);
+	          var c = checkColor(MACHINE, "triangle-aas", 4);
+	          return makeTriangleImage(jsnums.toFixnum(angleA),
+	                                   jsnums.toFixnum(angleB),
+				                             jsnums.toFixnum(sideC),
+				                             s.toString(),
+				                             c);
+    });
+
+
+
+EXPORTS['triangle-asa'] =
+    makePrimitiveProcedure(
+        'triangle-asa',
+	      5,
+	      function(MACHINE) {
+            var angleA = checkAngle(MACHINE, "triangle-asa", 0);
+	          var sideB = checkNonNegativeReal(MACHINE, "triangle-asa", 1);
+            var angleC = checkAngle(MACHINE, "triangle-asa", 2);
+            var s = checkMode(MACHINE, "triangle-asa", 3);
+	          var c = checkColor(MACHINE, "triangle-asa", 4);
+	          return makeTriangleImage(jsnums.toFixnum(angleA),
+	                                   jsnums.toFixnum(sideB),
+				                             jsnums.toFixnum(angleC),
+				                             s.toString(),
+				                             c);
+         });
+
+
+EXPORTS['triangle-saa'] =
+    makePrimitiveProcedure(
+        'triangle-saa',
+        5,
+	      function(MACHINE) {
+            var sideA = checkNonNegativeReal(MACHINE, "triangle-ssa", 0);
+	          var angleB = checkAngle(MACHINE, "triangle-saa", 1);
+            var angleC = checkAngle(MACHINE, "triangle-saa", 2);
+            var s = checkMode(MACHINE, "triangle-saa", 3);
+	          var c = checkColor(MACHINE, "triangle-saa", 4);
+	          return makeTriangleImage(jsnums.toFixnum(sideA),
+	                                   jsnums.toFixnum(sideB),
+				                             jsnums.toFixnum(angleC),
+				                             s.toString(),
+				                             c);
+         });
+
 
 
 EXPORTS['star'] = 

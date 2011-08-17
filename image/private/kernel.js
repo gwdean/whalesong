@@ -119,10 +119,9 @@ var makeCanvas = function(width, height) {
     canvas.width = width;
     canvas.height = height;
 
-    $(canvas).css('width', canvas.width + "px");
-    $(canvas).css('height', canvas.height + "px");
-    $(canvas).css('padding', '0px');
-
+    canvas.style.width = canvas.width + "px";
+    canvas.style.height = canvas.height + "px";
+    
     // KLUDGE: IE compatibility uses /js/excanvas.js, and dynamic
     // elements must be marked this way.
     if (window && typeof window.G_vmlCanvasManager != 'undefined') {
@@ -1255,6 +1254,346 @@ RightTriangleImage.prototype.equals = function(other, aUnionFind) {
 };
 
 //////////////////////////////////////////////////////////////////////
+//TriangleSssImage: Number Number Number Mode Color -> Image
+var TriangleSssImage = function(sideA, sideB, sideC, style, color) {
+	this.width = xxx?;
+	this.height = xxx?;
+
+	BaseImage.call(this, Math.floor(this.width/2), Math.floor(this.height/2));
+	this.sideA = sideA;
+	this.sideB = sideB;
+	this.sideC = sideC;
+    this.style = style;
+	this.color = color;
+}
+
+TriangleSssImage.prototype = heir(BaseImage.prototype);
+
+TriangleSssImage.prototype.render = function(ctx, x, y) {
+    var width = this.getWidth();
+    var height = this.getHeight();
+   // ctx.save();
+   // ctx.beginPath();
+   // ctx.moveTo(x, y+this.side2);
+   // ctx.lineTo(x+this.side1, y+this.side2);
+   // ctx.lineTo(x, y);
+   // ctx.closePath();
+
+   if (this.style.toString().toLowerCase() == "outline") {
+       ctx.strokeStyle = colorString(this.color);
+       ctx.stroke();
+   }
+   else {
+       ctx.fillStyle = colorString(this.color);
+       ctx.fill();
+   }
+   ctx.restore();
+};
+
+TriangleSssImage.prototype.equals = function(other, aUnionFind) {
+    return (other instanceof TriangleSssImage &&
+	    this.pinholeX == other.pinholeX &&
+	    this.pinholeY == other.pinholeY &&
+	    this.sideA == other.sideA &&
+	    this.sideB == other.sideB &&
+	    this.sideC == other.sideC &&
+	    this.style == other.style &&
+	    this.color == other.color &&
+	    plt.baselib.equality.equals(this.color, other.color, aUnionFind));
+};
+/////////////////////////////////////////////////////////////////////
+//TriangleAssImage: Number Number Number Mode Color -> Image
+var TriangleAssImage = function(angleA, sideB, sideC, style, color) {
+	this.width = xxx?;
+	this.height = xxx?;
+
+	BaseImage.call(this, Math.floor(this.width/2), Math.floor(this.height/2));
+	this.angleA = angleA;
+	this.sideB = sideB;
+	this.sideC = sideC;
+    this.style = style;
+	this.color = color;
+}
+
+TriangleAssImage.prototype = heir(BaseImage.prototype);
+
+TriangleAssImage.prototype.render = function(ctx, x, y) {
+    var width = this.getWidth();
+    var height = this.getHeight();
+   // ctx.save();
+   // ctx.beginPath();
+   // ctx.moveTo(x, y+this.side2);
+   // ctx.lineTo(x+this.side1, y+this.side2);
+   // ctx.lineTo(x, y);
+   // ctx.closePath();
+
+   if (this.style.toString().toLowerCase() == "outline") {
+       ctx.strokeStyle = colorString(this.color);
+       ctx.stroke();
+   }
+   else {
+       ctx.fillStyle = colorString(this.color);
+       ctx.fill();
+   }
+   ctx.restore();
+};
+
+TriangleAssImage.prototype.equals = function(other, aUnionFind) {
+    return (other instanceof TriangleAssImage &&
+	    this.pinholeX == other.pinholeX &&
+	    this.pinholeY == other.pinholeY &&
+	    this.angleA == other.angleA &&
+	    this.sideB == other.sideB &&
+	    this.sideC == other.sideC &&
+	    this.style == other.style &&
+	    this.color == other.color &&
+	    plt.baselib.equality.equals(this.color, other.color, aUnionFind));
+};
+
+//////////////////////////////////////////////////////////////////////
+//TriangleSasImage: Number Number Number Mode Color -> Image
+var TriangleSasImage = function(sideA, angleB, sideC, style, color) {
+    this.width = sideC;
+    this.height = sideA;
+
+    BaseImage.call(this, Math.floor(this.width/2), Math.floor(this.height/2));
+    this.sideA = sideA;
+    this.angleB = angleB;
+    this.sideC = sideC;
+    this.style = style;
+    this.color = color;
+}
+
+TriangleSasImage.prototype = heir(BaseImage.prototype);
+
+TriangleSasImage.prototype.render = function(ctx, x, y) {
+    var width = this.getWidth();
+    var height = this.getHeight();
+   // ctx.save();
+   // ctx.beginPath();
+   // ctx.moveTo(x, y+this.side2);
+   // ctx.lineTo(x+this.side1, y+this.side2);
+   // ctx.lineTo(x, y);
+   // ctx.closePath();
+
+   if (this.style.toString().toLowerCase() == "outline") {
+       ctx.strokeStyle = colorString(this.color);
+       ctx.stroke();
+   }
+   else {
+       ctx.fillStyle = colorString(this.color);
+       ctx.fill();
+   }
+   ctx.restore();
+};
+
+TriangleSasImage.prototype.equals = function(other, aUnionFind) {
+    return (other instanceof TriangleSasImage &&
+	    this.pinholeX == other.pinholeX &&
+	    this.pinholeY == other.pinholeY &&
+	    this.sideA == other.sideA &&
+	    this.angleB == other.angleB &&
+	    this.sideC == other.sideC &&
+	    this.style == other.style &&
+	    this.color == other.color &&
+	    plt.baselib.equality.equals(this.color, other.color, aUnionFind));
+};
+
+//////////////////////////////////////////////////////////////////////////
+//TriangleSsaImage: Number Number Number Mode Color -> Image
+var TriangleSsaImage = function(sideA, sideB, angleC, style, color) {
+	this.width = xxx?;
+	this.height = xxx?;
+
+	BaseImage.call(this, Math.floor(this.width/2), Math.floor(this.height/2));
+	this.sideA = sideA;
+	this.sideB = sideB;
+	this.angleC = angleC;
+    this.style = style;
+	this.color = color;
+}
+
+TriangleSsaImage.prototype = heir(BaseImage.prototype);
+
+TriangleSsaImage.prototype.render = function(ctx, x, y) {
+    var width = this.getWidth();
+    var height = this.getHeight();
+   // ctx.save();
+   // ctx.beginPath();
+   // ctx.moveTo(x, y+this.side2);
+   // ctx.lineTo(x+this.side1, y+this.side2);
+   // ctx.lineTo(x, y);
+   // ctx.closePath();
+
+   if (this.style.toString().toLowerCase() == "outline") {
+       ctx.strokeStyle = colorString(this.color);
+       ctx.stroke();
+   }
+   else {
+       ctx.fillStyle = colorString(this.color);
+       ctx.fill();
+   }
+   ctx.restore();
+};
+
+TriangleSsaImage.prototype.equals = function(other, aUnionFind) {
+    return (other instanceof TriangleSsaImage &&
+	    this.pinholeX == other.pinholeX &&
+	    this.pinholeY == other.pinholeY &&
+	    this.sideA == other.sideA &&
+	    this.sideB == other.sideB &&
+	    this.angleC == other.angleC &&
+	    this.style == other.style &&
+	    this.color == other.color &&
+	    plt.baselib.equality.equals(this.color, other.color, aUnionFind));
+};
+//////////////////////////////////////////////////////////////////////////
+//TriangleAasImage: Number Number Number Mode Color -> Image
+var TriangleAasImage = function(angleA, angleB, sideC, style, color) {
+	this.width = xxx?;
+	this.height = xxx?;
+
+	BaseImage.call(this, Math.floor(this.width/2), Math.floor(this.height/2));
+	this.angleA = angleA;
+	this.angleB = angleB;
+	this.sideC = sideC;
+    this.style = style;
+	this.color = color;
+}
+
+TriangleAasImage.prototype = heir(BaseImage.prototype);
+
+TriangleAasImage.prototype.render = function(ctx, x, y) {
+    var width = this.getWidth();
+    var height = this.getHeight();
+   // ctx.save();
+   // ctx.beginPath();
+   // ctx.moveTo(x, y+this.side2);
+   // ctx.lineTo(x+this.side1, y+this.side2);
+   // ctx.lineTo(x, y);
+   // ctx.closePath();
+
+   if (this.style.toString().toLowerCase() == "outline") {
+       ctx.strokeStyle = colorString(this.color);
+       ctx.stroke();
+   }
+   else {
+       ctx.fillStyle = colorString(this.color);
+       ctx.fill();
+   }
+   ctx.restore();
+};
+
+TriangleAasImage.prototype.equals = function(other, aUnionFind) {
+    return (other instanceof TriangleAasImage &&
+	    this.pinholeX == other.pinholeX &&
+	    this.pinholeY == other.pinholeY &&
+	    this.angleA == other.angleA &&
+	    this.angleB == other.angleB &&
+	    this.sideC == other.sideC &&
+	    this.style == other.style &&
+	    this.color == other.color &&
+	    plt.baselib.equality.equals(this.color, other.color, aUnionFind));
+};
+//////////////////////////////////////////////////////////////////////////
+//TriangleAsaImage: Number Number Number Mode Color -> Image
+var TriangleAsaImage = function(angleA, sideB, angleC, style, color) {
+	this.width = xxx?;
+	this.height = xxx?;
+
+	BaseImage.call(this, Math.floor(this.width/2), Math.floor(this.height/2));
+	this.angleA = angleA;
+	this.sideB = sideB;
+	this.angleC = angleC;
+    this.style = style;
+	this.color = color;
+}
+
+TriangleAsaImage.prototype = heir(BaseImage.prototype);
+
+TriangleAsaImage.prototype.render = function(ctx, x, y) {
+    var width = this.getWidth();
+    var height = this.getHeight();
+   // ctx.save();
+   // ctx.beginPath();
+   // ctx.moveTo(x, y+this.side2);
+   // ctx.lineTo(x+this.side1, y+this.side2);
+   // ctx.lineTo(x, y);
+   // ctx.closePath();
+
+   if (this.style.toString().toLowerCase() == "outline") {
+       ctx.strokeStyle = colorString(this.color);
+       ctx.stroke();
+   }
+   else {
+       ctx.fillStyle = colorString(this.color);
+       ctx.fill();
+   }
+   ctx.restore();
+};
+
+TriangleAsaImage.prototype.equals = function(other, aUnionFind) {
+    return (other instanceof TriangleAsaImage &&
+	    this.pinholeX == other.pinholeX &&
+	    this.pinholeY == other.pinholeY &&
+	    this.angleA == other.angleA &&
+	    this.sideB == other.sideB &&
+	    this.angleC == other.angleC &&
+	    this.style == other.style &&
+	    this.color == other.color &&
+	    plt.baselib.equality.equals(this.color, other.color, aUnionFind));
+};
+//////////////////////////////////////////////////////////////////////////
+//TriangleSaaImage: Number Number Number Mode Color -> Image
+var TriangleSaaImage = function(sideA, angleB, angleC, style, color) {
+	this.width = xxx?;
+	this.height = xxx?;
+
+	BaseImage.call(this, Math.floor(this.width/2), Math.floor(this.height/2));
+	this.sideA = sideA;
+	this.angleB = angleB;
+	this.angleC = angleC;
+    this.style = style;
+	this.color = color;
+}
+
+TriangleSsaImage.prototype = heir(BaseImage.prototype);
+
+TriangleSsaImage.prototype.render = function(ctx, x, y) {
+    var width = this.getWidth();
+    var height = this.getHeight();
+   // ctx.save();
+   // ctx.beginPath();
+   // ctx.moveTo(x, y+this.side2);
+   // ctx.lineTo(x+this.side1, y+this.side2);
+   // ctx.lineTo(x, y);
+   // ctx.closePath();
+
+   if (this.style.toString().toLowerCase() == "outline") {
+       ctx.strokeStyle = colorString(this.color);
+       ctx.stroke();
+   }
+   else {
+       ctx.fillStyle = colorString(this.color);
+       ctx.fill();
+   }
+   ctx.restore();
+};
+
+TriangleSaaImage.prototype.equals = function(other, aUnionFind) {
+    return (other instanceof TriangleSaaImage &&
+	    this.pinholeX == other.pinholeX &&
+	    this.pinholeY == other.pinholeY &&
+	    this.sideA == other.sideA &&
+	    this.angleB == other.angleB &&
+	    this.angleC == other.angleC &&
+	    this.style == other.style &&
+	    this.color == other.color &&
+	    plt.baselib.equality.equals(this.color, other.color, aUnionFind));
+};
+
+
+//////////////////////////////////////////////////////////////////////
 //Ellipse : Number Number Mode Color -> Image
 var EllipseImage = function(width, height, style, color) {
     BaseImage.call(this, Math.floor(width/2), Math.floor(height/2));
@@ -1476,6 +1815,30 @@ var makeRightTriangleImage = function(side1, side2, style, color) {
 var makeTriangleImage = function(side, angle, style, color) {
     return new TriangleImage(side, angle, style, color);
 };
+var makeIsoscelesTriangleImage = function(side, angle, style, color) {
+	return new IsoscelesTriangleImage(side, angle, style, color);
+};
+var makeTriangleSssImage = function(sideA, sideB, sideC, style, color) {
+	return new TriangleSssImage(sideA, sideB, sideC, style, color);
+};
+var makeTriangleAssImage = function(angleA, sideB, sideC, style, color) {
+	return new TriangleAssImage(angleA, sideB, sideC, style, color);
+};
+var makeTriangleSasImage = function(sideA, angleB, sideC, style, color) {
+    return new TriangleSasImage(sideA, angleB, sideC, style, color);
+};
+var makeTriangleSsaImage = function(sideA, sideB, angleC, style, color) {
+	return new TriangleSsaImage(sideA, sideB, angleC, style, color);
+};
+var makeTriangleAasImage = function(angleA, angleB, sideC, style, color) {
+	return new TriangleAasImage(angleA, angleB, sideC, style, color);
+};
+var makeTriangleAsaImage = function(angleA, sideB, angleC, style, color) {
+	return new TriangleAsaImage(angleA, sideB, sideC, style, color);
+};
+var makeTriangleSaaImage = function(sideA, angleB, angleC, style, color) {
+	return new TriangleSaaImage(sideA, angleB, angleC, style, color);
+};
 var makeEllipseImage = function(width, height, style, color) {
     return new EllipseImage(width, height, style, color);
 };
@@ -1524,6 +1887,14 @@ var isRhombusImage = function(x) { return x instanceof RhombusImage; };
 var isSquareImage	= function(x) { return x instanceof SquareImage; };
 var isTriangleImage= function(x) { return x instanceof TriangleImage; };
 var isRightTriangleImage = function(x) { return x instanceof RightTriangleImage; };
+var isIsoscelesTriangleImage = function(x) { return x instanceof IsoscelesTriangleImage };
+var isTriangleSssImage = function(x) { return x instanceof TriangleSssImage };
+var isTriangleAssImage = function(x) { return x instanceof TriangleAssImage };
+var isTriangleSasImage = function(x) { return x instanceof TriangleSasImage };
+var isTriangleSsaImage = function(x) { return x instanceof TriangleSsaImage };
+var isTriangleAasImage = function(x) { return x instanceof TriangleAasImage };
+var isTriangleAsaImage = function(x) { return x instanceof TriangleAsaImage };
+var isTriangleSaaImage = function(x) { return x instanceof TriangleSaaImage };
 var isEllipseImage = function(x) { return x instanceof EllipseImage; };
 var isLineImage	= function(x) { return x instanceof LineImage; };
 var isOverlayImage = function(x) { return x instanceof OverlayImage; };
@@ -1568,6 +1939,14 @@ EXPORTS.TextImage = TextImage;
 EXPORTS.StarImage = StarImage;
 EXPORTS.TriangleImage = TriangleImage;
 EXPORTS.RightTriangleImage = RightTriangleImage;
+EXPORTS.IsoscelesTriangleImage = IsoscelesTriangleImage;
+EXPORTS.TriangleSssImage = TriangleSssImage;
+EXPORTS.TriangleAssImage = TriangleAssImage;
+EXPORTS.TriangleSasImage = TriangleSasImage;
+EXPORTS.TriangleSsaImage = TriangleSsaImage;
+EXPORTS.TriangleAasImage = TriangleAasImage;
+EXPORTS.TriangleAsaImage = TriangleAsaImage;
+EXPORTS.TriangleSaaImage = TriangleSaaImage;
 EXPORTS.EllipseImage = EllipseImage;
 EXPORTS.LineImage = LineImage;
 EXPORTS.StarImage = StarImage;
@@ -1585,6 +1964,14 @@ EXPORTS.makePolygonImage = makePolygonImage;
 EXPORTS.makeSquareImage = makeSquareImage;
 EXPORTS.makeRightTriangleImage = makeRightTriangleImage;
 EXPORTS.makeTriangleImage = makeTriangleImage;
+EXPORTS.makeIsoscelesTriangleImage = makeIsoscelesTriangleImage;
+EXPORTS.makeTriangleSssImage = makeTriangleSssImage;
+EXPORTS.makeTriangleAssImage = makeTriangleAssImage;
+EXPORTS.makeTriangleSasImage = makeTriangleSasImage;
+EXPORTS.makeTriangleSsaImage = makeTriangleSsaImage;
+EXPORTS.makeTriangleAasImage = makeTriangleAasImage;
+EXPORTS.makeTriangleAsaImage = makeTriangleAsaImage;
+EXPORTS.makeTriangleSaaImage = makeTriangleSaaImage;
 EXPORTS.makeEllipseImage = makeEllipseImage;
 EXPORTS.makeLineImage = makeLineImage;
 EXPORTS.makeOverlayImage = makeOverlayImage;
@@ -1620,6 +2007,14 @@ EXPORTS.isRhombusImage = isRhombusImage;
 EXPORTS.isSquareImage = isSquareImage;
 EXPORTS.isTriangleImage = isTriangleImage;
 EXPORTS.isRightTriangleImage = isRightTriangleImage;
+EXPORTS.isIsoscelesTriangleImage = isIsoscelesTriangleImage;
+EXPORTS.isTriangleSssImage = isTriangleSssImage;
+EXPORTS.isTriangleAssImage = isTriangleAssImage;
+EXPORTS.isTriangleSasImage = isTriangleSasImage;
+EXPORTS.isTriangleSsaImage = isTriangleSsaImage;
+EXPORTS.isTriangleAasImage = isTriangleAasImage;
+EXPORTS.isTriangleAsaImage = isTriangleAsaImage;
+EXPORTS.isTriangleSaaImage = isTriangleSaaImage;
 EXPORTS.isEllipseImage = isEllipseImage;
 EXPORTS.isLineImage = isLineImage;
 EXPORTS.isOverlayImage = isOverlayImage;

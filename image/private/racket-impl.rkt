@@ -38,6 +38,13 @@
          triangle
          right-triangle
          isosceles-triangle
+         triangle/sss
+         triangle/ass
+         triangle/sas
+         triangle/ssa
+         triangle/aas
+         triangle/asa
+         triangle/saa
          star
          radial-star
          star-polygon
@@ -54,9 +61,6 @@
          angle?
          side-count?
          image-color?
-
-
-         image?
 
          ;; Something funky is happening on the Racket side of things with regards
          ;; to step-count?  See:  http://bugs.racket-lang.org/query/?cmd=view&pr=12031
