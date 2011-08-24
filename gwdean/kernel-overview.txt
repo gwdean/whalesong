@@ -1,0 +1,38 @@
+Making sense of the kernel.js file -> 
+A Nooby's Perspective.
+
+Scale of File ~ 1640 lines
+
+BaseImage
+
+RightTriangleImage: Number Number Mode Color
+example: (right-triangle 60 80 "solid" "red")
+
+|\
+| \ 
+|  \ 
+|   \
+|    \
+------
+
+Each shape consists of four subparts. We will
+use RightTriangleImage as our example.
+
+var RightTriangleImage = function(side1, side2, style, color) {
+  this.width = side1;
+  this.width = side2;
+  
+  BaseImage.call(this
+
+
+Things to Know
+--------------
+* Everything inherits from the BaseImage
+function
+
+* Each shape consists of four sub-parts
+
+
+
+
+

@@ -1,0 +1,14 @@
+Hey Guys.
+
+Here's an update. I filled in basically all the minutia
+related to the triangles, but I am stuck on the drawing
+algorithms. I know that they involve using the Law of
+Sines and the Law of Cosines to draw, but my brain is
+basically full right now. I at least want to get the 
+ball rolling with Github though.
+
+These are the additions:
+
+kernel.js
+
+
