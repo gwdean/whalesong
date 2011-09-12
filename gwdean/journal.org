@@ -25,27 +25,14 @@ There are six files in the whalesong/image/private
 directory.
 
 ** What is the prototype structure of the Image files?
-
+   
 * 11/09/12
 Activities for today. 
 
-Define a specific step to help me
-move towards the completion of these images.
+1- Describe in detail how the TriangleImage code
+   from the kernel.js file works.
+2- Make a github reference sheet. (completed)
 
-1 - The triangle primitive -> why does this
-    ask if the triangle is less than 180?
-
-2 - Write out a Design Recipe that will 
-    make it clear what I need to do.
-
-Answer to 2:
-
-I need to make a function that takes three
-numbers and produces a triangle. At some
-level, all the triangles are equivalent to
-each other, so there is some shared structure.
-
-Make a github reference sheet.
 * Reference
 ---------
 ** Whalesong README
@@ -228,11 +215,9 @@ This uses code from the following projects:
 
    [FIXME: add more]
 
-** Github Notes
 ** Links
 http://planet.racket-lang.org/package-source/dyoo/whalesong.plt/1/0/planet-docs/manual/index.html
 
-   
 * Github reference sheet
 ** Create a new repository
 http://help.github.com/create-a-repo/
@@ -241,9 +226,9 @@ http://learn.github.com/p/normal.html
 ** Cheat Sheet
 http://help.github.com/git-cheat-sheets/
 
-
-   
-
 ** Useful commands
+*** Updating a remote repository
 git add .
-git add *
+git commit . m 'message'
+git push origin master
+
