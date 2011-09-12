@@ -1,0 +1,37 @@
+Making sense of the kernel.js file 
+----------------------------------
+* Scale of File ~ 1640 Lines  
+* RightTriangleImage: Number Number Mode Color
+example: (right-triangle 60 80 "solid" "red")
+
+|\
+| \ 
+|  \ 
+|   \
+|    \
+------
+* All images inherit from BaseImage
+* Each shape consists of four sub-parts
+* Prototypal Inheritance
+* Canvas
+* HTML Testing Framework
+* Some Questions
+--------------
+I am trying to get my way through these triangles files. 
+I have some questions:
+
+1- How do I test these functions? I have made a little canvas
+framework to test the function individually. 
+
+2- I have a lot of notes, sketches, etc. that may be useful
+down the road for documentation purposes, or that may be
+useful down the road. I would like to post these to my 
+personal fork, perhaps in a new folder. Is this a good idea?
+Or would it just confuse things?
+
+
+
+
+* Law of Sines
+* Law of Cosines
+* Degrees-to-Radians
