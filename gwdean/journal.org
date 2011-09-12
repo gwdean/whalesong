@@ -243,3 +243,7 @@ http://help.github.com/git-cheat-sheets/
 
 
    
+
+** Useful commands
+git add .
+git add *
