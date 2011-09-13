@@ -1,4 +1,4 @@
-* 11/09/11
+* 11/09/11 -> Welcome to the Journal 
 This is the beginning of a journal about my
 experiences and current state of understanding
 of Whalesong. 
@@ -26,13 +26,121 @@ directory.
 
 ** What is the prototype structure of the Image files?
    
-* 11/09/12
+* 11/09/12 -> A Couple of Goals. One of which is Complete.
 Activities for today. 
 
 1- Describe in detail how the TriangleImage code
-   from the kernel.js file works.
+   from the kernel.js file works. (did not complete)
 2- Make a github reference sheet. (completed)
 
+* 11/09/13 -> High Level Overview of Compilers
+Today I spent some time taking a step back
+and looking at the idea of a compiler in
+general. An online article by Steve Yegge
+fired me up (get reference). I took notes
+on GoogleDocs about it. He breaks down
+the structure of compilers and why they are
+important in a very clear way. Also, I
+found an article called "How does a compiler/
+interpreter work?" at forums.devshed.com.
+
+Here are some notes on "Hdac/iw?":
+
+Everything you were afraid to ask about how a compiler/interpreter works.
+
+Source File -> Scanner -> Lexer -> Parser -> Interpreter/Code Generator
+(sf) -> (sc) -> (lx) -> (ps) -> (i/cg)
+
+(sf) -> program that is read by the interpreter
+(sc) -> module1 of the (c/i) -> reads (sf) 
+(lx) -> module2 of the (c/i) -> chunks (sf) into tokens/types
+(ps) -> module3 of the (c/i) -> deals with syntax / "speaks" with lexer
+(i/cg) -> module4 of the (c/i) -> "takes the action that is specified by a program statement"??
+
+This is a good ideal model to have in mind, as I
+can use it to compare against Whalesong to see how they
+are different and in which ways they are similar.
+
+Structure of the Whalesong Compiler -> in gwdean-ese circa 9/2011
+-----------------------------------------------------------------
+(...the following is a compression of the Whalesong
+Github page circa August/September 2011...)
+
+http://hashcollision.org/whalesong/index.html for documentation
+
+prereq: Racket 5.1.1
+usage:  (...stuff...things...)
+
+Architecture
+-------------
+1- Reuse most of the Racket compiler infrastructure.
+2- Racket compiler produces bytecode from Racket Source
+3- Racket compiler also performs macro expansion and module-level optimizations
+4- Bytecode is parsed using the compiler/zo-parse collection to get an AST
+5- The AST is compiled into an intermediate language
+6- Assemble JavaScript
+
+Architecture in Diagrams
+------------------------
+JS -> AST -> IL
+parse-bytecode.rkt -> compiler.rkt -> assembler.rkt
+
+IL is intended to be translated straightforwardly.
+Assembler to JavaScript
+Simulator (simulator.rkt) allows for controlled tests
+
+Some important files
+--------------
+parser/parse-bytecode.rkt -> reuses Racket compiler to produce AST structures in compiler/zo-parse
+compiler/compiler.rkt     -> translates the AST to the intermediate language
+                          -> compiler is a variation on the register compiler of sicp/5.5
+                          -> trying to generate code that works effectively on the Racket Machine 
+il-structs.rkt            -> defines intermediate language
+simulator/simulator.rkt   -> simulator for the il
+test-simulator.rkt        -> to see the simulator in action
+test-compiler.rkt         -> to see how the output of the compiler can be fed into the simulator
+
+Assumed Machine
+---------------
+Stack machine with the following atomic registers:
+
+val: value
+proc: procedure
+argcount: number of arguments
+
+and two stack registers:
+
+env: environment stack
+control: control stack
+
+js-assembler/assemble.rkt
+-------------------------
+Assembler tricks to make things like tail calls work (..stuff...things...)
+Assembler depends on the functions in mini-runtime.js
+As soon as the compiler stabilizes, Moby Scheme runtime will be pulled into the project
+Assembled output distinguishes between Primitives and Closures
+Primitives are only allowed to return single values back + no higher-order procedure calls
+Closures have full access to the machine and doing stuff with continuations
+
+Tests
+-----
+The test suite in test-all.rkt runs the test suite
+Need a web browser
+
+References
+----------
+Whalesong uses code from: jshashtable,js-numbers,JSON,jquery
+
+** Sample Source Code -> "boring old factorial"
+-----------------------------------------------
+#lang planet dyoo/whalesong
+(provide fact)
+(define (fact x)
+  (cond
+    [(= x 0)
+     1]
+    [else
+     (* x (fact (sub1 x)))]))
 * Reference
 ---------
 ** Whalesong README
@@ -231,4 +339,7 @@ http://help.github.com/git-cheat-sheets/
 git add .
 git commit . m 'message'
 git push origin master
+
+* Emacs reference
+Toggle line numbers: Ctrl-F5
 
