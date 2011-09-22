@@ -141,6 +141,88 @@ Whalesong uses code from: jshashtable,js-numbers,JSON,jquery
      1]
     [else
      (* x (fact (sub1 x)))]))
+* 11/09/14 -> Compiler Notes
+I stayed with my Compiler studies for another day, and I
+spent much of the day looking through the SICP book, since
+Whalesong is based in part on its structure.
+
+To help track my progress, I also started a sicp.org page
+in my logics folder. The notes on describing machine 
+designs are pretty complete. I worked a lot on understanding
+how to draw the data path and controller diagrams. 
+* 11/09/15 -> SICP
+My readings of the last few days and nights has shed
+new light on SICP. It makes a lot more sense now that
+I have a reason to learn it. Before it was just cool
+looking, now I can see a lot of the logic coming through.
+
+I am reading it almost like a novel right now. A lot of
+concepts I glazed over make more sense than before. I'm on
+page 53, dealing with the section on Procedures as
+Parameters. I started to see how certain examples 
+build on each other. For instance, the GCD means a lot
+more now that I see that it is used to demonstrate how
+the register machine in section 5.1.
+
+Also, I enjoyed finding Adbulaziz Ghoulom's interesting
+paper called "An Incremental Approach to Compiler
+Construction" in which he summarizes how to build a 
+compiler in Scheme in only a dozen pages or so. Great
+for portability!!!
+* 11/09/16 -> Back to the Images
+Now that I've taken a few days to understand compilers better,
+I can return to the images with fresh eyes. Perhaps this would
+be the time (9:12 am, riding on a bus from Providence to NY)
+to figure out what I need to do next to make the images render
+properly. 
+
+There seem to be two major bottlenecks right now that I need
+to master before I can finish the project. The first is understanding
+how the canvas drawing procedure works. The second is understanding
+how to test my results in an effective manner. 
+
+** Part One -> triangle/sas function
+Part one involves understanding how we can make a function for
+the "triangle/sas" family that resembles the one for the RightTriangleImage
+found in kernel.js file. 
+
+The part I am currently hung up on is the part of the 
+render function that contains the canvas drawing procedure. 
+
+ctx.save();
+ctx.beginPath();
+ctx.moveTo(x, y+this.side2);
+ctx.lineTo(x+this.side1, y+this.side2);
+ctx.lineTo(x, y);
+ctx.closePath();
+
+Lets work through this for (x,y,side1,side2) -> (0,0,100,200)
+
+moveTo(0,200)
+lineTo(100,200)
+lineTo(0,0)
+
+The goal is to find a similar procedure that will allow us to draw
+the triangle/sas series of triangles. 
+
+In Racket, the function for drawing a triangle/sas that will
+create the same output as the RightTriangle immediately above
+looks like: (triangle/sas 100 90 200 "solid" "red").
+
+Using the above notation we have (x,y,side1,angle2,side3) -> (0,0,100,90,200)
+
+moveTo(x,y+this.side3) -> moveTo(0,200)
+
+(!!!...The Next Step is a mystery...!!!!)
+
+** Part Two -> testing the results
+* 11/09/19 -> jQuery Day
+Due to some events occuring over the weekend, I decided
+to start looking at some jQuery. Plus, since I am in NY,
+that will be a good topic for riding along the subway,
+reading and taking notes from the jQuery Pocket Guide that
+I have with me. I will have the Whalesong notes with me
+as well, so I will be looking at those as well.
 * Reference
 ---------
 ** Whalesong README

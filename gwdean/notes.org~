@@ -1,0 +1,17 @@
+This is an org file in which I keep notes
+relating to the code that I am working on.
+
+
+Sources
+-------
+Solving Oblique Triangles
+http://demonstrations.wolfram.com/SolvingObliqueTriangles/
+
+To solve an oblique triangle means to find the lengths
+of the unknown sides and the measures of unknown angles.
+If two angles are known, then third angle can be determined
+simply by knowing that the sum of the three interior angles
+must equal 180 degrees.
+
+Both the Law of Sines and the Law of Cosines are important
+tools for solving oblique triangles.
