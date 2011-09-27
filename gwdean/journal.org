@@ -223,6 +223,65 @@ that will be a good topic for riding along the subway,
 reading and taking notes from the jQuery Pocket Guide that
 I have with me. I will have the Whalesong notes with me
 as well, so I will be looking at those as well.
+* 11/09/27 -> Triangle/Sas Assignment
+** Assignment Overview
+Got caught up in some more networking/job stuff which 
+distracted me again. I'm back in NYC and I was able
+to make some progress on the algorithm. I have a rough
+draft of the algorithm working, but I haven't fully
+tested it out in depth yet. However, my skills in
+JavaScript are slowly starting to improve. Working
+with Haverbeke's "Eloquent JavaScript" and jQuery has
+helped deepen my JavaScript understanding a bit.
+
+So what do I have to do before I am happy? There are
+two basic things I need to do before I can get this
+off my mind for a while. 
+
+First, I have to describe what all of the six files
+in the images folder actually do. I did this earlier,
+but now I've spent so much time working out the 
+the details of the algorithm, I lost some touch with
+that aspect of the project.
+
+Second, I need to write an explanation of how the algorithm
+works. Thus, (First, and Second) represent what I need to
+explain. Also, I should be clear on how to test the 
+files. 
+** Six Files
+*** color.rkt  -> no change
+*** colordb.js -> no change
+*** js-impl.js -> moderate change
+*** kernel.js  -> major change
+*** main.rkt   -> minor change 
+*** racket-impl.rkt -> minor change
+** Working of the algorithm
+The first draft of the working algorithm can be found
+in the 20110927-Best.html file. (Unfortunate name, but
+I'm not creative right now). The core of the algorithm
+looks like this:
+*** Triangle/Sas 0.1
+var ctx = canvas.getContext('2d');
+          var x = 50;
+          var y = 50;
+          var a = 100;
+          var b = 10;
+          var c = 50;
+          var radians = b * 0.0174532952;
+          var height = a * Math.sin(radians);
+          var width = Math.sqrt((a * a) - (height * height));
+
+          // works for <90
+
+          ctx.beginPath();
+          ctx.moveTo(x,y);
+          ctx.lineTo(c+x,y);
+          ctx.lineTo((c-width)+x,height+y);
+          ctx.lineTo(x,y);
+          ctx.fill();
+
+An Explanation will follow later.
+** Testing?
 * Reference
 ---------
 ** Whalesong README
