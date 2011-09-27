@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Canvas tutorial template</title>
+    <script type="text/javascript">
+      function draw(){
+        var canvas = document.getElementById('tutorial');
+        if (canvas.getContext){
+          var ctx = canvas.getContext('2d');
+          var x = 0;
+          var y = 0;
+          var a = 50;
+          var b = 90;
+          var c = 100;
+          var radians = b * (0.0174532952);
+
+          ctx.beginPath();
+          ctx.moveTo(x,y);
+          ctx.lineTo(x+c,y);
+          ctx.rotate(0.785);
+          ctx.lineTo(x+c+a,y);
+          ctx.rotate(-0.785);
+          ctx.lineTo(x,y);
+          ctx.fill();
+        }
+      }
+    </script>
+    <style type="text/css">
+      canvas { border: 2px solid black; }
+    </style>
+  </head>
+  <body onload="draw();">
+    <canvas id="tutorial" width="150" height="150"></canvas>
+    <h5>Triangle/Sas</h5>
+  </body>
+</html>
