@@ -288,6 +288,10 @@ Made a simple change to the algorithm, extending it
 to cover triangles which have angle values of greater
 than 90 degrees. I am saving this as a new file called
 my-triangle-sas.js.
+* 11/10/06 -> Worked a bit more on the Triangle/Sas algorithm
+Added a few little pieces to the Triangle/Sas algorithm. My assignment
+for the weekend is to finish up the Triangle/Sas function, and then
+work on the Triangle/Sss function.
 * Reference
 ---------
 ** Whalesong README
